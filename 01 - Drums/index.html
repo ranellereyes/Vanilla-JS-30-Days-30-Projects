@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Day 01: Drums</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <ul class="keylist">
+      <div data-keycode="65">
+        <p class="key">A</p>
+        <p class="soundName">Boom</p>
+      </div>
+      <div data-keycode="83">
+        <p class="key">S</p>
+        <p class="soundName">Clap</p>
+      </div>
+      <div data-keycode="68">
+        <p class="key">D</p>
+        <p class="soundName">HiHat</p>
+      </div>
+      <div data-keycode="70">
+        <p class="key">F</p>
+        <p class="soundName">Kick</p>
+      </div>
+      <div data-keycode="71">
+        <p class="key">G</p>
+        <p class="soundName">OpenHat</p>
+      </div>
+      <div data-keycode="72">
+        <p class="key">H</p>
+        <p class="soundName">Ride</p>
+      </div>
+      <div data-keycode="74">
+        <p class="key">J</p>
+        <p class="soundName">Snare</p>
+      </div>
+      <div data-keycode="75">
+        <p class="key">K</p>
+        <p class="soundName">Tink</p>
+      </div>
+      <div data-keycode="76">
+        <p class="key">L</p>
+        <p class="soundName">Tom</p>
+      </div>
+    </ul>
+  </body>
+  <script>
+    const handleKeyPress = function(e) {
+      const key = document.querySelector(`div[data-keycode="${e.keyCode}"]`);
+      key.classList.add("playing");
+    },
+          removePlaying = function(e) { e.target.classList.remove("playing") }
+
+
+    window.addEventListener("keydown", handleKeyPress)
+    const allKeys = document.querySelectorAll(`div`);
+    allKeys.forEach(key => key.addEventListener("transitionend", removePlaying))
+  </script>
+</html>
