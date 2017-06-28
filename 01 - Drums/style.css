@@ -6,11 +6,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  align-content: center;
   margin: 0;
   padding: 0;
   color: white;
   font-size: 28px;
-  font-family: sans-serif;
+  font-family: 'Press Start 2P', cursive;
   font-weight: 600;
 }
 
@@ -32,7 +33,7 @@ div {
   border: black;
   align-items: center;
   justify-content: space-between;
-  border: 8px solid teal;
+  border: 8px solid purple;
   transition: all 0.2s ease;
   background-color: gray;
   opacity: 0.8;
@@ -46,7 +47,7 @@ div.playing {
 
 p {
   color: white;
-  font-family: sans-serif;
-  font-size: 15px;
-  font-weight: 600;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 13px;
+  font-weight: 200;
 }
