@@ -60,11 +60,28 @@
     }
 
     .hand {
-      width:50%;
       height:6px;
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition-duration: 0.02s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    }
+
+    .hour-hand {
+      width: 35%;
+      margin-left: 15%;
+    }
+
+    .min-hand {
+      width: 45%;
+      margin-left: 5%;
+    }
+
+    .second-hand{
+      width: 50%;
     }
 
     p {
@@ -76,8 +93,23 @@
   </style>
 
   <script>
+    const tick = function() {
+      const currTime = new Date,
+            secHand = document.querySelector(`.second-hand`),
+            minHand = document.querySelector(`.min-hand`),
+            hourHand = document.querySelector(`.hour-hand`);
 
+      let secDegs = (currTime.getSeconds() / 60) * 360,
+          minDegs = (currTime.getMinutes() / 60) * 360,
+          hrDegs = (currTime.getHours() / 12) * 360;
 
+      secHand.style.transform = `rotate(${90 + secDegs % 360}deg)`;
+      minHand.style.transform = `rotate(${90 + minDegs % 360}deg)`;
+      hourHand.style.transform = `rotate(${90 + hrDegs % 360 }deg)`;
+      console.log(secDegs, minDegs, hrDegs);
+    }
+
+    setInterval(tick, 1000)
   </script>
 </body>
 </html>
