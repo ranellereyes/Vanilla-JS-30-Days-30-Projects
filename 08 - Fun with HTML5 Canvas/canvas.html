@@ -13,16 +13,17 @@
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  ctx.strokeStyle = 'GreenYellow';
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
-  ctx.lineWidth = 10;
+  ctx.lineWidth = 5;
 
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
   let hue = 0;
   let isGrowing = true;
+
+  const [lowerStrokeBound, upperStrokeBound, growthDelay] = [10, 20, 5];
 
   function draw(e) {
     if (!isDrawing) { return; }
@@ -33,8 +34,11 @@
     ctx.stroke();
     [lastX, lastY] = [e.offsetX, e.offsetY];
     hue = hue <= 360 ? hue + 1 : 0;
-    if (ctx.lineWidth >= 20 || ctx.lineWidth < 10) { isGrowing = !isGrowing }
-    isGrowing ? ctx.lineWidth++ : ctx.lineWidth--
+    if (ctx.lineWidth >= upperStrokeBound) { isGrowing = false }
+    if (ctx.lineWidth <= lowerStrokeBound) { isGrowing = true }
+    if (hue % growthDelay === 0) {
+      isGrowing ? ctx.lineWidth++ : ctx.lineWidth--
+    }
   }
 
 canvas.addEventListener('mousedown', (e) => {
